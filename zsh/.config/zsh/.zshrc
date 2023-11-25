@@ -4,4 +4,5 @@
 source ~/.config/zsh/plugins.zsh
 source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/exports.zsh
+source ~/.config/zsh/keymaps.zsh
 
