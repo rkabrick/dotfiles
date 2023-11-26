@@ -1,1 +1,1 @@
-bindkey -s '^F' 'tmux-sessionizer-norg\n'
+bindkey -s '^F' 'tmux-sessionizer\n'
