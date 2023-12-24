@@ -1,0 +1,5 @@
+.iterm2*
+.zsh_history
+.zsh_sessions
+*.zcompdump*
+.zshrc_*
