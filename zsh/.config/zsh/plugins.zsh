@@ -5,6 +5,7 @@ plug 'zap-zsh/magic-enter'
 plug 'MAHcodes/distro-prompt'
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
+plug "aloxaf/fzf-tab"
 
 # Load and initialise completion system
 autoload -Uz compinit

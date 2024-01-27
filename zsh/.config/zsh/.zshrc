@@ -6,3 +6,4 @@ source ~/.config/zsh/aliases.zsh
 source ~/.config/zsh/exports.zsh
 source ~/.config/zsh/keymaps.zsh
 
+eval "$(zoxide init zsh)"
