@@ -4,7 +4,16 @@ local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
-return {}
+return {
+	"telescope.nvim",
+	dependencies = {
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		config = function()
+			require("telescope").load_extension("fzf")
+		end,
+	},
+}
 -- local example = function(opts)
 --   opts = opts or {}
 --   pickers
