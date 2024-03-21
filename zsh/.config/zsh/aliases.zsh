@@ -34,6 +34,7 @@ alias n='notes'
 #
 #alias cp=bettercp
 
+alias ssh='TERM=xterm-256color ssh'
 # Function to integrate zoxide with fzf
 function zf() {
     # Use zoxide query to list directories and pipe them to fzf
@@ -75,3 +76,6 @@ function cmake_build_check() {
 
 # Alias the function to 'cmake'
 alias cm=cmake_build_check
+nv () { nvim }
+bnv () { NVIM_APPNAME="brickvim" nvim $@}
+# alias nvim-brick="NVIM_APPNAME=brickvim nvim"
