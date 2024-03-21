@@ -1,0 +1,60 @@
+# Changing Window Focus
+#
+# Change focus within a space
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+# Change focus to different display
+alt - s: yabai -m display --focus west
+alt - g: yabai -m display --focus east
+
+# rotate layout clockwise
+shift + alt - r : yabai -m window first --swap next && sleep 0.1 && yabai -m window first --swap last
+
+# flip along y-axis
+shift + alt - y : yabai -m space --mirror y-axis
+
+# flip along x-axis
+shift + alt - x : yabai -m space --mirror x-axis
+
+# toggle window float
+shift + alt - f : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# WINDOW SIZE MODIFICATIONS
+# - maximize window
+shift + alt - m : yabai -m window --toggle zoom-fullscreen
+
+# - balance out tree of windows (make all windows same size)
+shift + alt - e : yabai -m space --balance
+
+# MOVE WINDOWS AROUND
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - h : yabai -m window --swap west
+shift + alt - l : yabai -m window --swap east
+
+# SPACES
+ctrl + alt - 1 : yabai -m window --space 1
+ctrl + alt - 2 : yabai -m window --space 2
+ctrl + alt - 3 : yabai -m window --space 3
+ctrl + alt - 4 : yabai -m window --space 4
+ctrl + alt - 5 : yabai -m window --space 5
+ctrl + alt - 6 : yabai -m window --space 6
+ctrl + alt - 7 : yabai -m window --space 7
+ctrl + alt - 8 : yabai -m window --space 8
+ctrl + alt - 9 : yabai -m window --space 9
+
+# send to other display
+shift + alt - t : yabai_toggle_display
+
+# START / STOP YABAI
+ctrl + alt - q : yabai --stop-service
+ctrl + alt - s : yabai --start-service
+
+
+# App Configs
+cmd - return : open -a WezTerm
+alt - return : open -a Arc
+
