@@ -10,18 +10,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "norg",
+	callback = function()
+		vim.cmd("Copilot disable")
+	end,
+})
+
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	pattern = { "*" },
 	command = [[%s/\s\+$//e]],
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.norg" },
-	callback = function()
-		if vim.fn.search("@code python", "nw") ~= 0 then
-			vim.cmd("Neorg jupyter init")
-		end
-	end,
 })
 
 local function get_git_root(current_file_path)
@@ -30,27 +28,3 @@ local function get_git_root(current_file_path)
 	local git_root = vim.fn.systemlist(cmd)[1]
 	return git_root
 end
-
----- TODO: Verify LazyVim doesn't already do this
---vim.api.nvim_create_autocmd({ "BufEnter" }, {
---  callback = function()
---    local current_file_path = vim.api.nvim_buf_get_name(0)
---    local proj_root = get_git_root(current_file_path)
---    -- Get the current directory
---    local current_dir = vim.fn.getcwd()
---    -- If we are already in the project root, do nothing
---    if current_dir ~= proj_root then
---      if proj_root ~= "" then
---        vim.loop.chdir(proj_root)
---        require("notify")("Changed directory to " .. proj_root, "info", { title = "BrickCmds" })
---      else
---        vim.loop.chdir("./")
---        require("notify")(
---          "Did not change directory because not git repo found" .. vim.loop.chdir,
---          "info",
---          { title = "BrickCmds" }
---        )
---      end
---    end
---  end,
---})
