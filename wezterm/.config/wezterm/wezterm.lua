@@ -37,11 +37,26 @@ config.adjust_window_size_when_changing_font_size = false
 local act = wezterm.action
 
 config.keys = {
+
 	-- Choose tabs
 	{
 		key = "t",
 		mods = "CMD|SHIFT",
 		action = act.ShowTabNavigator,
+	},
+}
+
+config.mouse_bindings = {
+	{
+		event = { Down = { streak = 3, button = "Left" } },
+		action = wezterm.action.SelectTextAtMouseCursor("SemanticZone"),
+		mods = "NONE",
+	},
+	-- Ctrl-click will open the link under the mouse cursor
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "CMD",
+		action = wezterm.action.OpenLinkAtMouseCursor,
 	},
 }
 
