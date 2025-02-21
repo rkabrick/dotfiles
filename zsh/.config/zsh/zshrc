@@ -1,0 +1,64 @@
+# ~/.config/zsh/zshrc
+
+# --------------------------------------------------------------------------
+# 1. Zap or other plugin-manager initialization (if you use it)
+# --------------------------------------------------------------------------
+# Created by Zap installer
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && \
+  source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+
+# --------------------------------------------------------------------------
+# 2. Completion configuration (before compinit)
+# --------------------------------------------------------------------------
+zstyle ':completion:*' menu select
+
+# --------------------------------------------------------------------------
+# 3. Source exports, credentials, keymaps
+# --------------------------------------------------------------------------
+source "$HOME/.config/zsh/exports.zsh"
+
+# Only source credentials if the file exists; do not commit this file
+[ -f "$HOME/.config/zsh/credentials.zsh" ] && \
+  source "$HOME/.config/zsh/credentials.zsh"
+
+source "$HOME/.config/zsh/keymaps.zsh"
+
+# --------------------------------------------------------------------------
+# 4. Custom completion paths & compinit
+# --------------------------------------------------------------------------
+fpath=("$HOME/.config/zsh/completions" $fpath)
+
+autoload -Uz compinit
+compinit
+
+# --------------------------------------------------------------------------
+# 5. Load plugins (after compinit)
+# --------------------------------------------------------------------------
+source "$HOME/.config/zsh/plugins.zsh"
+
+# --------------------------------------------------------------------------
+# 6. Load aliases
+# --------------------------------------------------------------------------
+source "$HOME/.config/zsh/aliases.zsh"
+
+# --------------------------------------------------------------------------
+# 7. Additional plugin/tool configurations
+# --------------------------------------------------------------------------
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+export LESSOPEN='|~/.config/lessopen/lessfilter %s'
+
+eval "$(zoxide init zsh)"
+
+# Example path extension
+export PATH="$PATH:$HOME/.config/spicetify/.spicetify"
+
+# Load additional tools
+eval "$(zoxide init zsh)"
+export PATH=$PATH:/Users/rkabrick/.spicetify
+
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh)"
+
+source $(brew --prefix modules)/init/zsh
+
+# End of ~/.config/zsh/zshrc

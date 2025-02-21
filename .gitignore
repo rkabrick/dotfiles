@@ -3,3 +3,5 @@
 .zsh_sessions
 *.zcompdump*
 .zshrc_*
+*credentials*
+tmux/.config/tmux/plugins
