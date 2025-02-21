@@ -1,0 +1,71 @@
+#compdef aerospace
+
+_aerospace() {
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '(-h --help)'{-h,--help}'[Show help information]' \
+        '(-v --version)'{-v,--version}'[Show version information]' \
+        '1: :->cmds' \
+        '*:: :->args'
+
+    case $state in
+        cmds)
+            _values 'aerospace commands' \
+                'balance-sizes[Balance sizes of all windows in the current workspace]' \
+                'close[Close the focused window]' \
+                'close-all-windows-but-current[On the focused workspace, close all windows but current]' \
+                'config[Query AeroSpace config options]' \
+                'debug-windows[Interactive command to record Accessibility API debug information]' \
+                'enable[Temporarily disable window management]' \
+                'flatten-workspace-tree[Flatten the tree of the focused workspace]' \
+                'focus[Set focus to the nearest window in the given direction]' \
+                'focus-back-and-forth[Switch between current and previously focused elements]' \
+                'focus-monitor[Focus monitor by relative direction, order, or pattern]' \
+                'fullscreen[Toggle fullscreen mode for the focused window]' \
+                'join-with[Put focused window and nearest node under common parent]' \
+                'layout[Change layout of the focused window]' \
+                'list-apps[Print list of running applications in the Dock]' \
+                'list-exec-env-vars[List environment variables for exec commands]' \
+                'list-modes[Print list of currently specified modes]' \
+                'list-monitors[Print monitors that satisfy conditions]' \
+                'list-windows[Print windows that satisfy conditions]' \
+                'list-workspaces[Print workspaces that satisfy conditions]' \
+                'macos-native-fullscreen[Toggle macOS fullscreen for focused window]' \
+                'macos-native-minimize[Minimize focused window]' \
+                'mode[Activate the specified binding mode]' \
+                'move[Move the focused window in given direction]' \
+                'move-mouse[Move mouse to requested position]' \
+                'move-node-to-monitor[Move window to targeted monitor]' \
+                'move-node-to-workspace[Move focused window to specified workspace]' \
+                'move-workspace-to-monitor[Move workspace to targeted monitor]' \
+                'reload-config[Reload currently active config]' \
+                'resize[Resize the focused window]' \
+                'split[Split focused window]' \
+                'summon-workspace[Move requested workspace to focused monitor]' \
+                'trigger-binding[Trigger AeroSpace binding]' \
+                'volume[Manipulate volume]' \
+                'workspace[Focus the specified workspace]' \
+                'workspace-back-and-forth[Switch between focused and previous workspaces]'
+            ;;
+        args)
+            case $line[1] in
+                focus|move)
+                    _values 'directions' 'north' 'south' 'east' 'west'
+                    ;;
+                layout)
+                    _values 'layouts' 'bsp' 'stack' 'float'
+                    ;;
+                workspace|move-node-to-workspace)
+                    _values 'workspace numbers' {1..9}
+                    ;;
+                volume)
+                    _values 'volume commands' 'up' 'down' 'mute'
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_aerospace

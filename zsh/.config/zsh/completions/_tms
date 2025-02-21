@@ -1,0 +1,65 @@
+#compdef tms
+
+_tms() {
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '--generate[Shell completion generator]:(bash elvish fish powershell zsh)' \
+        '(-h --help)'{-h,--help}'[Print help information]' \
+        '(-V --version)'{-V,--version}'[Print version information]' \
+        '1: :->cmds' \
+        '*:: :->args'
+
+    case $state in
+        cmds)
+            _values 'tms commands' \
+                'config[Configure the defaults for search paths and excluded directories]' \
+                'start[Initialize tmux with the default sessions]' \
+                'switch[Display other sessions with a fuzzy finder and preview]' \
+                'windows[Display current session windows with fuzzy finder and preview]' \
+                'kill[Kill the current tmux session and jump to another]' \
+                'sessions[Show running tmux sessions with asterisk on current]' \
+                'rename[Rename the active session and working directory]' \
+                'refresh[Creates new worktree windows for the selected session]' \
+                'clone-repo[Clone repository and create a new session for it]' \
+                'init-repo[Initialize empty repository]' \
+                'bookmark[Bookmark a directory for selection with Git repositories]' \
+                'help[Print help message or help for given subcommand(s)]'
+            ;;
+        args)
+            case $line[1] in
+                help)
+                    _values 'commands' \
+                        'config' \
+                        'start' \
+                        'switch' \
+                        'windows' \
+                        'kill' \
+                        'sessions' \
+                        'rename' \
+                        'refresh' \
+                        'clone-repo' \
+                        'init-repo' \
+                        'bookmark'
+                    ;;
+                config)
+                    _arguments \
+                        '--path[Add search path]' \
+                        '--exclude[Add excluded directory]'
+                    ;;
+                clone-repo)
+                    _arguments \
+                        '1:repository URL:' \
+                        '2:destination directory:_files -/'
+                    ;;
+                bookmark)
+                    _arguments \
+                        '1:directory:_files -/'
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_tms
